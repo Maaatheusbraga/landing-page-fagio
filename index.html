@@ -4,179 +4,224 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAGIO | Clínica de Fisioterapia Especializada</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .bg-fagio-green { background-color: #384d43; } /* Verde militar original */
-        .bg-fagio-dark { background-color: #2d3d35; } /* Versão mais escura para degradê */
+        
+        /* Identidade Visual FAGIO */
+        .bg-fagio-green { background-color: #384d43; } 
+        .bg-fagio-dark { background-color: #2d3d35; } 
         .text-fagio-green { color: #384d43; }
         .border-fagio-green { border-color: #384d43; }
         
-        /* Utilitário para degradê "vivo" da marca */
+        /* Gradiente Fagio para as secções verdes */
         .bg-gradient-fagio {
             background: linear-gradient(135deg, #384d43 0%, #2d3d35 100%);
         }
 
-        /* CONFIGURAÇÃO DO CARROSSEL INFINITO */
+        /* ANIMAÇÃO DO CARROSSEL INFINITO */
         @keyframes scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 4)); } /* Ajustar baseado no número de fotos originais */
+            100% { transform: translateX(calc(-300px * 4)); } 
         }
+
+        /* ANIMAÇÃO DE FLUTUAÇÃO DOS BLOBS (MOVIMENTO VERDE NO FUNDO BRANCO) */
+        @keyframes float-blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(60px, -80px) scale(1.2); }
+            66% { transform: translate(-40px, 40px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        .animate-blob {
+            animation: float-blob 12s infinite alternate ease-in-out;
+        }
+
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
 
         .marquee-content {
             display: flex;
-            width: calc(250px * 8); /* Dobro do número de fotos para o loop ser invisível */
-            animation: scroll 30s linear infinite;
+            width: calc(300px * 8); 
+            animation: scroll 25s linear infinite;
         }
 
-        .marquee-content:hover {
-            animation-play-state: paused; /* Pausa ao passar o mouse para ver a foto melhor */
-        }
+        .marquee-content:hover { animation-play-state: paused; }
 
         .marquee-item {
-            width: 250px;
-            height: 350px;
+            width: 300px;
+            height: 400px;
             flex-shrink: 0;
-            padding: 0 10px;
+            padding: 0 15px;
         }
+
+        /* Glassmorphism para secções verdes */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #menu-toggle:checked ~ #mobile-menu { display: block; }
     </style>
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-white text-gray-800 antialiased overflow-x-hidden">
 
-    <!-- Navegação -->
+    <!-- HEADER -->
     <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-2">
-                <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO" class="h-10 w-auto">
-                <span class="font-bold text-xl tracking-tighter text-fagio-green"></span>
+                <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO Logo" class="h-10 w-auto">
+                <span class="font-bold text-xl tracking-tighter text-fagio-green">FAGIO</span>
             </div>
             
-            <!-- Menu Desktop -->
-            <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
-                <a href="#inicio" class="hover:text-fagio-green transition">Início</a>
-                <a href="#servicos" class="hover:text-fagio-green transition">Serviços</a>
-                <a href="#local" class="hover:text-fagio-green transition">Nosso Local</a>
-                <a href="#quem-somos" class="hover:text-fagio-green transition">Quem Somos</a>
-                <a href="#contato" class="hover:text-fagio-green transition">Contato</a>
+            <div class="hidden md:flex space-x-8 font-medium text-xs uppercase tracking-[0.2em]">
+                <a href="#inicio" class="hover:text-fagio-green transition font-bold">Início</a>
+                <a href="#servicos" class="hover:text-fagio-green transition font-bold">Serviços</a>
+                <a href="#local" class="hover:text-fagio-green transition font-bold">Onde Estamos</a>
+                <a href="#quem-somos" class="hover:text-fagio-green transition font-bold">Quem Somos</a>
+                <a href="#contato" class="hover:text-fagio-green transition font-bold">Contacto</a>
             </div>
 
-            <a href="https://wa.me/5511930172211" target="_blank" class="bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-fagio-dark transition shadow-md">
-                AGENDAR CONSULTA
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/5511930172211" target="_blank" class="hidden sm:block bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg transition">
+                    AGENDAR CONSULTA
+                </a>
+                <label for="menu-toggle" class="md:hidden cursor-pointer text-fagio-green p-2">
+                    <i class="fas fa-bars text-2xl"></i>
+                </label>
+            </div>
+
+            <input type="checkbox" id="menu-toggle" class="hidden">
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 md:hidden">
+                <div class="flex flex-col p-6 space-y-4 text-center font-bold uppercase text-sm tracking-widest text-gray-700">
+                    <a href="#inicio">Início</a>
+                    <a href="#servicos">Serviços</a>
+                    <a href="#local">Onde Estamos</a>
+                    <a href="#quem-somos">Quem Somos</a>
+                    <a href="#contato">Contacto</a>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-gradient-to-b from-white to-gray-100">
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div class="z-10">
-                <span class="inline-block px-4 py-1 rounded-full bg-fagio-green/10 text-fagio-green font-bold text-xs mb-6 uppercase tracking-widest">
-                    Fisioterapia Desportiva & Elite
+    <!-- 1. HERO: BRANCO COM MOVIMENTO -->
+    <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-white">
+        <!-- Blobs Dinâmicos -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-fagio-green/20 rounded-full blur-[100px] animate-blob"></div>
+        <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="z-10 order-2 md:order-1">
+                <span class="inline-block px-4 py-1 rounded-full bg-fagio-green/10 text-fagio-green font-bold text-[10px] mb-6 uppercase tracking-[0.2em]">
+                    Fisioterapia Desportiva & Elite 
                 </span>
-                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
-                    Performance que <span class="text-fagio-green">não para.</span>
+                <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+                    Mova-se sem <br><span class="text-fagio-green italic">limites.</span>
                 </h1>
-                <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                    Especialistas em recuperação e otimização de movimento para atletas de alta performance e amadores. Mais de 5.000 atendimentos realizados somente em 2025.
+                <p class="text-lg text-gray-500 mb-10 max-w-lg leading-relaxed">
+                    Especialistas em fisioterapia desportiva. Recuperação acelerada e prevenção inteligente para quem vive o esporte em alta intensidade.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#servicos" class="bg-fagio-green text-white px-8 py-4 rounded-lg font-bold text-center hover:shadow-xl transition">Nossos Serviços</a>
-                    <a href="#local" class="border-2 border-fagio-green text-fagio-green px-8 py-4 rounded-lg font-bold text-center hover:bg-fagio-green hover:text-white transition">Conhecer Clínica</a>
+                    <a href="https://wa.me/5511930172211" class="bg-fagio-green text-white px-10 py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300">Agendar Avaliação</a>
+                    <a href="#servicos" class="bg-white border border-gray-200 text-gray-700 px-10 py-5 rounded-2xl font-bold text-center hover:bg-gray-50 transition">Ver Serviços</a>
+                </div>
+                <div class="mt-12 flex items-center gap-4">
+                    <div class="flex -space-x-3 text-white">
+                        <div class="w-10 h-10 rounded-full bg-fagio-dark border-2 border-white flex items-center justify-center text-[10px] font-bold">F</div>
+                        <div class="w-10 h-10 rounded-full bg-fagio-green border-2 border-white flex items-center justify-center text-[10px] font-bold">A</div>
+                        <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-[10px] font-bold">G</div>
+                    </div>
+                    <p class="text-sm text-gray-500 font-medium">Mais de <span class="font-bold text-gray-800">5.000 atendimentos</span> em 2025.</p>
                 </div>
             </div>
-            <div class="relative">
-                <div class="rounded-3xl overflow-hidden shadow-2xl transform md:rotate-2 hover:rotate-0 transition duration-500">
-                    <img src="imagens/atendimento2025.JPG" alt="Fisioterapia de Performance" class="w-full h-[550px] object-cover">
+            <div class="relative order-1 md:order-2">
+                <div class="rounded-[40px] overflow-hidden shadow-2xl relative z-10 border-[12px] border-white">
+                    <img src="imagens/atendimento2025.JPG" alt="Atendimento" class="w-full h-[450px] md:h-[600px] object-cover">
                 </div>
-                <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-2xl hidden md:block border-l-8 border-fagio-green">
-                    <p class="text-4xl font-bold text-fagio-green">+5.000</p>
-                    <p class="text-xs text-gray-500 font-extrabold uppercase tracking-tighter">Atendimentos em 2025</p>
+                <div class="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-xl z-20 hidden md:block border border-gray-50 text-center">
+                    <i class="fas fa-bolt text-yellow-500 text-2xl mb-2"></i>
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Recovery</p>
+                    <p class="text-xl font-bold text-fagio-green leading-none">Acelerado</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Serviços -->
+    <!-- 2. SERVIÇOS: VERDE (GRADIENTE) -->
     <section id="servicos" class="py-28 bg-gradient-fagio text-white relative">
-        <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-gray-100 to-transparent opacity-20"></div>
         <div class="container mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4 italic">Nossa Especialidade</h2>
-                <div class="w-24 h-1.5 bg-white/30 mx-auto rounded-full"></div>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 italic tracking-tight">O que fazemos por você</h2>
+                <div class="w-20 h-1.5 bg-white/20 mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:bg-white/10 transition group">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="imagens/reabilitacao.jfif" alt="Reabilitação" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#2d3d35] to-transparent"></div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
+                        <i class="fas fa-running text-2xl group-hover:text-fagio-green text-white"></i>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Reabilitação Desportiva</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Foco no retorno rápido e seguro ao esporte, tratando lesões agudas e crônicas com protocolo de elite.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Reabilitação</h3>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Protocolos de elite para tratamento de lesões, focando no retorno seguro à rotina e esportes.</p>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:bg-white/10 transition group">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="imagens/prevencao.jpg" alt="Prevenção" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#2d3d35] to-transparent"></div>
+                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
+                        <i class="fas fa-battery-full text-2xl group-hover:text-fagio-green text-white"></i>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Recovery & Performance</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Otimize sua recuperação pós-treino e previna lesões através de técnicas avançadas de mobilidade.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Recovery</h3>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Recuperação ativa e passiva para remover a fadiga e preparar seu corpo para o próximo desafio.</p>
                 </div>
-                <div class="bg-white/5 backdrop-blur-sm rounded-3xl overflow-hidden border border-white/10 hover:bg-white/10 transition group">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="imagens/reabilitacao.jfif" alt="Avaliação" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 opacity-80 group-hover:opacity-100">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#2d3d35] to-transparent"></div>
+                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
+                        <i class="fas fa-chart-line text-2xl group-hover:text-fagio-green text-white"></i>
                     </div>
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold mb-3">Avaliação Biomecânica</h3>
-                        <p class="text-gray-300 text-sm leading-relaxed">Análise detalhada do movimento para identificar desequilíbrios e melhorar sua eficiência mecânica.</p>
-                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Biomecânica</h3>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Análise técnica do movimento para identificar falhas e prevenir lesões por desgaste mecânico.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Local -->
-    <section id="local" class="py-28 bg-gradient-to-b from-gray-50 to-white">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row gap-16 items-center">
-                <div class="w-full md:w-1/2 grid grid-cols-2 gap-4 relative">
-                    <div class="absolute -inset-4 bg-fagio-green/5 rounded-full blur-3xl -z-10"></div>
-                    <img src="imagens/clinica1.jpeg" class="rounded-2xl h-52 w-full object-cover shadow-lg hover:-translate-y-1 transition" alt="Clínica Fagio">
-                    <img src="imagens/clinica2.jpeg" class="rounded-2xl h-52 w-full object-cover shadow-lg hover:-translate-y-1 transition mt-8" alt="Equipamentos">
-                    <img src="imagens/clinica3.jpeg" class="rounded-2xl h-52 w-full object-cover shadow-lg hover:-translate-y-1 transition -mt-8" alt="Sala de Atendimento">
-                    <img src="imagens/clinica4.jpeg" class="rounded-2xl h-52 w-full object-cover shadow-lg hover:-translate-y-1 transition" alt="Espaço Recovery">
+    <!-- 3. LOCAL: BRANCO COM MOVIMENTO -->
+    <section id="local" class="py-28 relative overflow-hidden bg-white">
+        <!-- Blobs Dinâmicos -->
+        <div class="absolute top-1/4 left-0 w-80 h-80 bg-fagio-green/15 rounded-full blur-[100px] animate-blob"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-fagio-green/10 rounded-full blur-[120px] animate-blob animation-delay-4000"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row gap-20 items-center">
+                <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+                    <img src="imagens/clinica1.jpeg" class="rounded-3xl h-64 w-full object-cover shadow-lg" alt="Local">
+                    <img src="imagens/clinica2.jpeg" class="rounded-3xl h-64 w-full object-cover shadow-lg mt-12" alt="Estrutura">
+                    <img src="imagens/clinica3.jpeg" class="rounded-3xl h-64 w-full object-cover shadow-lg -mt-12" alt="Salas">
+                    <img src="imagens/clinica4.jpeg" class="rounded-3xl h-64 w-full object-cover shadow-lg" alt="Espaço Elite">
                 </div>
                 <div class="w-full md:w-1/2">
-                    <h2 class="text-4xl font-bold mb-8 leading-tight">Ambiente projetado para sua <span class="text-fagio-green underline decoration-wavy decoration-1 underline-offset-8 text-fagio-green/40">excelência.</span></h2>
-                    <p class="text-gray-600 mb-10 text-lg leading-relaxed italic">
-                        "Onde a ciência do esporte encontra o cuidado humano de alto nível."
+                    <h2 class="text-4xl font-bold mb-8 leading-tight">Ambiente projetado para a sua <br><span class="text-fagio-green italic uppercase underline underline-offset-8 decoration-gray-200">Excelência.</span></h2>
+                    <p class="text-gray-500 mb-10 text-lg leading-relaxed">
+                        Nossa unidade em Santo André foi planejada para oferecer tecnologia de ponta e conforto absoluto durante seu tratamento.
                     </p>
                     <div class="space-y-6">
-                        <div class="flex items-center gap-5 p-4 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition">
-                            <div class="w-12 h-12 rounded-xl bg-fagio-green/10 flex items-center justify-center text-fagio-green text-xl">
-                                <i class="fas fa-map-marked-alt"></i>
-                            </div>
+                        <div class="flex gap-6 items-center p-6 bg-white border border-gray-100 shadow-sm rounded-3xl">
+                            <i class="fas fa-map-pin text-fagio-green text-2xl"></i>
                             <div>
-                                <p class="font-bold">Endereço Premium</p>
-                                <p class="text-sm text-gray-500">Avenida Utinga, 376, Santo André, SP</p>
+                                <p class="font-bold text-gray-900">Avenida Utinga, 376</p>
+                                <p class="text-sm text-gray-400 font-medium">Santo André, SP (CEP 09220-310)</p>
                             </div>
                         </div>
-                        <div class="flex items-center gap-5 p-4 rounded-2xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition">
-                            <div class="w-12 h-12 rounded-xl bg-fagio-green/10 flex items-center justify-center text-fagio-green text-xl">
-                                <i class="fas fa-calendar-check"></i>
-                            </div>
+                        <div class="flex gap-6 items-center p-6 bg-white border border-gray-100 shadow-sm rounded-3xl">
+                            <i class="fas fa-clock text-fagio-green text-2xl"></i>
                             <div>
-                                <p class="font-bold">Horários Flexíveis</p>
-                                <p class="text-sm text-gray-500">Seg-Sex: 07h às 20h | Sáb: 08h às 13h</p>
+                                <p class="font-bold text-gray-900 text-sm md:text-base">Seg a Sex: 07h às 20h | Sáb: 08h às 13h</p>
                             </div>
                         </div>
                     </div>
@@ -185,163 +230,153 @@
         </div>
     </section>
 
-    <!-- NOVA SEÇÃO: GALERIA INFINITA (DECORATIVA) -->
-    <!-- Esta seção não aparece no menu, serve para dar volume e mostrar o dia a dia da clínica -->
-    <section class="py-12 bg-white overflow-hidden border-y border-gray-100">
-        <div class="container mx-auto px-6 mb-8 text-center md:text-left">
-            <h3 class="text-xs font-extrabold text-fagio-green uppercase tracking-[0.3em] mb-2">FAGIO EM MOVIMENTO</h3>
-            <p class="text-gray-400 text-sm">Acompanhe nosso dia a dia de atendimentos de elite.</p>
+    <!-- 4. GALERIA INFINITA: VERDE (GRADIENTE) -->
+    <section class="py-16 bg-gradient-fagio overflow-hidden border-y border-white/5">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end text-white">
+            <div>
+                <h3 class="font-bold text-3xl italic tracking-tight">FAGIO em movimento</h3>
+                <p class="opacity-50 text-sm mt-2 uppercase tracking-widest font-bold">Dia a dia de elite</p>
+            </div>
         </div>
         
-        <!-- Wrapper do Carrossel -->
-        <div class="relative flex overflow-hidden group">
-            <!-- Conteúdo do Carrossel (Duplicado para criar efeito infinito) -->
+        <div class="relative flex overflow-hidden">
             <div class="marquee-content">
-                <!-- Foto 1 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimento1.jpeg" alt="Atendimento" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 2 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta.jpeg" alt="Performance" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 3 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta3.JPG" alt="Recovery" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 4 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta2.JPG" alt="Elite" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-
-                <!-- BLOCO DUPLICADO (Obrigatório para o efeito infinito ser perfeito) -->
-                <!-- Se você adicionar mais fotos acima, lembre-se de copiar elas para aqui também -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimento1.jpeg" alt="Atendimento" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 2 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta2.JPG" alt="Performance" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 3 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta3.JPG" alt="Recovery" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                <!-- Foto 4 -->
-                <div class="marquee-item">
-                    <img src="imagens/atendimentoatleta.jpeg" alt="Elite" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition duration-500 shadow-md">
-                </div>
-                </div>
+                <div class="marquee-item"><img src="imagens/atendimento1.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta3.JPG" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta2.JPG" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <!-- Cópias -->
+                <div class="marquee-item"><img src="imagens/atendimento1.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta3.JPG" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
+                <div class="marquee-item"><img src="imagens/atendimentoatleta2.JPG" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
             </div>
         </div>
     </section>
 
-    <!-- Seção Quem Somos -->
-    <section id="quem-somos" class="py-28 bg-gradient-fagio text-white overflow-hidden relative">
-        <div class="absolute right-0 top-0 opacity-10 translate-x-1/2 -translate-y-1/2">
-             <img src="SIMBOLOMARCADAGUA1.png" class="w-[600px] h-auto grayscale brightness-200">
-        </div>
-        
+    <!-- 5. QUEM SOMOS: BRANCO COM MOVIMENTO -->
+    <section id="quem-somos" class="py-28 bg-white relative overflow-hidden">
+        <!-- Blobs Dinâmicos -->
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob"></div>
+        <div class="absolute -bottom-20 left-10 w-96 h-96 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
+
         <div class="container mx-auto px-6 relative z-10">
-            <div class="flex flex-col md:flex-row gap-16 items-center">
+            <div class="flex flex-col md:flex-row gap-20 items-center">
                 <div class="w-full md:w-1/2">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-10 italic tracking-tighter">Mentes jovens,<br>visão especializada.</h2>
-                    <p class="text-gray-200 mb-6 text-lg leading-relaxed">
-                        A FAGIO nasceu da parceria entre os fisioterapeutas Giovanni e Fabio, que compartilham o objetivo de elevar o padrão da fisioterapia desportiva na região. 
+                    <h2 class="text-4xl md:text-5xl font-bold mb-10 italic leading-[1.1]">Expertise clínica, <br>mentalidade de <span class="text-fagio-green">atleta.</span></h2>
+                    <p class="text-gray-500 mb-6 text-lg leading-relaxed font-medium">
+                        Giovanni e Fabio fundaram a FAGIO para democratizar a fisioterapia de alto nível antes restrita a grandes clubes.
                     </p>
-                    <p class="text-gray-200 mb-10 text-lg leading-relaxed">
-                        Entendemos a cabeça do atleta porque vivemos o esporte. Nosso método combina ciência atualizada com a prática clínica intensiva, garantindo resultados rápidos para quem não pode ficar parado.
+                    <p class="text-gray-500 mb-10 text-lg leading-relaxed">
+                        Hoje, unimos anos de vivência esportiva para tratar cada paciente com foco total em resultados, independentemente do nível competitivo.
                     </p>
-                    <div class="flex items-center gap-6 p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md">
-                        <div class="w-16 h-1 bg-white/40 rounded-full"></div>
-                        <div>
-                            <p class="font-bold text-2xl leading-none">Giovanni & Fabio</p>
-                            <p class="text-sm text-white/60 mt-2 uppercase tracking-widest font-bold">Diretoria Clínica</p>
-                        </div>
+                    <div class="p-8 bg-gray-50 rounded-3xl border-l-8 border-fagio-green">
+                        <p class="text-2xl font-bold text-gray-800 italic">"Não tratamos apenas lesões, potencializamos seres humanos."</p>
+                        <p class="mt-4 text-fagio-green font-bold uppercase text-xs tracking-widest">— Giovanni & Fabio</p>
                     </div>
                 </div>
                 <div class="w-full md:w-1/2 relative">
-                    <div class="absolute -inset-2 border-2 border-white/20 rounded-3xl transform -rotate-3"></div>
-                    <img src="imagens/proprietarios.JPG" alt="Proprietários Giovanni e Fabio" class="rounded-3xl shadow-2xl relative z-10 border-2 border-white/10 hover:rotate-0 transition duration-500">
+                    <div class="absolute inset-0 bg-fagio-green rounded-[50px] rotate-3 -z-10 opacity-5"></div>
+                    <!-- FOTO PROPRIETÁRIOS: Sem grayscale, cores normais -->
+                    <img src="imagens/proprietarios.JPG" alt="Proprietários" class="rounded-[50px] shadow-2xl border-[12px] border-white transition duration-700">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contato / Footer -->
-    <section id="contato" class="py-28 bg-gradient-to-b from-white to-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 mb-24">
-                <div>
-                    <h2 class="text-4xl font-bold mb-6 italic">Pronto para o seu próximo nível?</h2>
-                    <p class="text-gray-600 mb-10 text-lg">Escolha o melhor caminho para sua recuperação e agende sua avaliação hoje mesmo.</p>
-                    
-                    <div class="space-y-8">
-                        <a href="https://www.instagram.com/fagiofisio/" target="_blank" class="flex items-center gap-6 group">
-                            <div class="w-14 h-14 rounded-2xl bg-fagio-green text-white flex items-center justify-center text-2xl group-hover:scale-110 transition shadow-lg">
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <span class="font-bold text-xl group-hover:text-fagio-green transition">@fagiofisio</span>
-                        </a>
-                        <a href="https://wa.me/5511930172211" target="_blank" class="flex items-center gap-6 group">
-                            <div class="w-14 h-14 rounded-2xl bg-green-600 text-white flex items-center justify-center text-2xl group-hover:scale-110 transition shadow-lg">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <span class="font-bold text-xl group-hover:text-green-600 transition">(11) 93017-2211</span>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="relative">
-                    <div class="absolute inset-0 bg-fagio-green rounded-3xl blur-2xl opacity-5"></div>
-                    <form class="relative bg-white p-10 rounded-3xl shadow-xl border border-gray-100">
-                        <div class="grid grid-cols-2 gap-6 mb-6">
-                            <div class="col-span-2">
-                                <label class="block text-xs font-extrabold uppercase mb-2 tracking-widest text-gray-400">Nome Completo</label>
-                                <input type="text" class="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-fagio-green focus:bg-white outline-none transition" placeholder="Ex: João Silva">
-                            </div>
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-xs font-extrabold uppercase mb-2 tracking-widest text-gray-400">WhatsApp</label>
-                                <input type="tel" class="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-fagio-green focus:bg-white outline-none transition" placeholder="(11) 99999-9999">
-                            </div>
-                            <div class="col-span-2 md:col-span-1">
-                                <label class="block text-xs font-extrabold uppercase mb-2 tracking-widest text-gray-400">Objetivo</label>
-                                <select class="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-fagio-green focus:bg-white outline-none transition appearance-none">
-                                    <option>Avaliação</option>
-                                    <option>Recovery</option>
-                                    <option>Reabilitação</option>
-                                </select>
-                            </div>
-                            <div class="col-span-2">
-                                <label class="block text-xs font-extrabold uppercase mb-2 tracking-widest text-gray-400">Breve Descrição</label>
-                                <textarea rows="3" class="w-full px-5 py-4 rounded-xl bg-gray-50 border-2 border-transparent focus:border-fagio-green focus:bg-white outline-none transition" placeholder="Conte-nos sua necessidade..."></textarea>
-                            </div>
-                        </div>
-                        <button class="w-full bg-fagio-green text-white py-5 rounded-xl font-bold hover:bg-fagio-dark hover:shadow-2xl transition-all uppercase tracking-widest text-sm shadow-lg">Solicitar Contato</button>
-                    </form>
-                </div>
+    <!-- 6. FAQ: VERDE (GRADIENTE) -->
+    <section class="py-28 bg-gradient-fagio text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-4xl relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold italic mb-4 tracking-tight">Perguntas Frequentes</h2>
+                <p class="opacity-70 font-medium font-sm">Esclareça suas dúvidas sobre nossos atendimentos.</p>
             </div>
+            
+            <div class="space-y-4">
+                <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        Atendem por convênio?
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                    </summary>
+                    <p class="mt-4 opacity-80 leading-relaxed text-sm">
+                        Trabalhamos com o sistema de <strong>reembolso</strong>. Emitimos nota fiscal e documentação completa para você solicitar o estorno ao seu plano de saúde.
+                    </p>
+                </details>
 
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-gray-400 text-sm border-t border-gray-200 pt-12">
-                <div class="flex items-center gap-3">
-                    <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO" class="h-8 opacity-40 grayscale">
-                    <div class="border-l border-gray-200 pl-3">
-                        <span class="font-extrabold text-gray-500 tracking-tighter">FAGIO © 2026</span>
-                        <p class="text-[10px] uppercase font-bold tracking-widest">Performance & Fisioterapia</p>
-                    </div>
-                </div>
-                <div class="flex gap-8 font-bold uppercase text-[11px] tracking-widest">
-                    <a href="#" class="hover:text-fagio-green transition">Privacidade</a>
-                    <a href="#" class="hover:text-fagio-green transition">Termos</a>
-                </div>
+                <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        Preciso de pedido médico?
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                    </summary>
+                    <p class="mt-4 opacity-80 leading-relaxed text-sm">
+                        Não é obrigatório. Nossa avaliação clínica traça o diagnóstico fisioterapêutico necessário para iniciar o plano de tratamento.
+                    </p>
+                </details>
+
+                <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
+                    <summary class="flex justify-between items-center font-bold text-lg list-none">
+                        Quanto tempo dura a sessão?
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                    </summary>
+                    <p class="mt-4 opacity-80 leading-relaxed text-sm">
+                        Dura em média 60 minutos, focados 100% no seu objetivo, utilizando as melhores técnicas e equipamentos.
+                    </p>
+                </details>
             </div>
         </div>
     </section>
 
-    <!-- Botão Flutuante WhatsApp -->
-    <a href="https://wa.me/5511930172211" target="_blank" class="fixed bottom-8 right-8 bg-green-500 text-white w-16 h-16 rounded-2xl flex items-center justify-center shadow-[0_10px_40px_rgba(34,197,94,0.4)] hover:scale-110 hover:-translate-y-2 transition-all z-50 group">
+    <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO -->
+    <footer id="contato" class="py-28 bg-white border-t border-gray-100 relative overflow-hidden">
+        <!-- Blobs Dinâmicos -->
+        <div class="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-fagio-green/15 rounded-full blur-[150px] animate-blob"></div>
+        <div class="absolute top-0 right-0 w-80 h-80 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
+
+        <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+            <div class="mb-16">
+                <h2 class="text-5xl md:text-7xl font-bold italic mb-8 tracking-tighter leading-tight">
+                    Vem ser <br><span class="text-fagio-green underline decoration-gray-100 underline-offset-8 uppercase">Fagio.</span>
+                </h2>
+                <p class="text-gray-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+                    Alta performance requer recuperação inteligente. Agende agora e eleve seu jogo.
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6 mb-24">
+                <a href="https://wa.me/5511930172211" target="_blank" class="flex items-center justify-center gap-6 p-6 rounded-3xl bg-green-50 text-green-700 hover:bg-green-100 transition group min-w-[300px] shadow-sm border border-green-100">
+                    <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-xl shadow-sm"><i class="fab fa-whatsapp"></i></div>
+                    <span class="font-bold text-xl group-hover:scale-105 transition-transform">(11) 93017-2211</span>
+                </a>
+                <a href="https://www.instagram.com/fagiofisio/" target="_blank" class="flex items-center justify-center gap-6 p-6 rounded-3xl bg-fagio-green/5 text-fagio-green hover:bg-fagio-green/10 transition group min-w-[300px] shadow-sm border border-fagio-green/5">
+                    <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-xl shadow-sm"><i class="fab fa-instagram"></i></div>
+                    <span class="font-bold text-xl group-hover:scale-105 transition-transform">@fagiofisio</span>
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10 text-gray-400 text-[10px] border-t border-gray-100 pt-16 font-bold uppercase tracking-[0.2em]">
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                    <div class="flex items-center gap-3">
+                        <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO" class="h-6 opacity-30 grayscale">
+                        <span>FAGIO © 2026</span>
+                    </div>
+                    <!-- Link Braga Solutions -->
+                    <div class="flex items-center gap-2">
+                        <span class="opacity-40 uppercase text-[9px]">Desenvolvido por</span>
+                        <a href="https://www.instagram.com/braga.solutions/" target="_blank" class="text-fagio-green hover:text-fagio-dark transition-colors tracking-[0.3em]">braga solutions</a>
+                    </div>
+                </div>
+                <div class="flex gap-10">
+                    <a href="#" class="hover:text-fagio-green">Privacidade</a>
+                    <a href="#" class="hover:text-fagio-green">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE -->
+    <a href="https://wa.me/5511930172211" target="_blank" class="fixed bottom-10 right-10 bg-green-500 text-white w-16 h-16 rounded-[24px] flex items-center justify-center shadow-2xl shadow-green-200 hover:scale-110 hover:-translate-y-2 transition-all z-50 group">
         <i class="fab fa-whatsapp text-3xl"></i>
-        <span class="absolute right-20 bg-white text-gray-800 px-4 py-2 rounded-xl text-xs font-bold shadow-xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none whitespace-nowrap border border-gray-100">Agende Agora</span>
+        <span class="absolute right-20 bg-white text-gray-900 px-6 py-3 rounded-2xl text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none border border-gray-100 whitespace-nowrap">Agende no WhatsApp</span>
     </a>
 
 </body>
