@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="scroll-smooth">
+<html lang="pt-pt" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAGIO | Clínica de Fisioterapia Especializada</title>
     
-    <!-- Tailwind CSS -->
+    <!-- Framework de Estilização: Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
+    <!-- Biblioteca de Ícones: FontAwesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts: Inter -->
+    <!-- Fontes: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -26,6 +26,26 @@
         /* Gradiente Fagio para as secções verdes */
         .bg-gradient-fagio {
             background: linear-gradient(135deg, #384d43 0%, #2d3d35 100%);
+        }
+
+        /* EFEITO DE HOVER NO MENU (NOVIDADE) */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #384d43;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         /* ANIMAÇÃO DO CARROSSEL INFINITO */
@@ -48,6 +68,18 @@
 
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
+
+        /* EFEITO DE APARIÇÃO (REVEAL) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .marquee-content {
             display: flex;
@@ -84,12 +116,13 @@
                 <span class="font-bold text-xl tracking-tighter text-fagio-green">FAGIO</span>
             </div>
             
+            <!-- Menu Desktop com Efeito de Hover -->
             <div class="hidden md:flex space-x-8 font-medium text-xs uppercase tracking-[0.2em]">
-                <a href="#inicio" class="hover:text-fagio-green transition font-bold">Início</a>
-                <a href="#servicos" class="hover:text-fagio-green transition font-bold">Serviços</a>
-                <a href="#local" class="hover:text-fagio-green transition font-bold">Onde Estamos</a>
-                <a href="#quem-somos" class="hover:text-fagio-green transition font-bold">Quem Somos</a>
-                <a href="#contato" class="hover:text-fagio-green transition font-bold">Contacto</a>
+                <a href="#inicio" class="nav-link hover:text-fagio-green font-bold">Início</a>
+                <a href="#servicos" class="nav-link hover:text-fagio-green font-bold">Serviços</a>
+                <a href="#local" class="nav-link hover:text-fagio-green font-bold">Onde Estamos</a>
+                <a href="#quem-somos" class="nav-link hover:text-fagio-green font-bold">Quem Somos</a>
+                <a href="#contato" class="nav-link hover:text-fagio-green font-bold">Contacto</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -116,11 +149,11 @@
 
     <!-- 1. HERO: BRANCO COM MOVIMENTO -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-white">
-        <!-- Blobs Dinâmicos -->
+        <!-- Blobs Dinâmicos Visíveis -->
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-fagio-green/20 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
 
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10 reveal active">
             <div class="z-10 order-2 md:order-1">
                 <span class="inline-block px-4 py-1 rounded-full bg-fagio-green/10 text-fagio-green font-bold text-[10px] mb-6 uppercase tracking-[0.2em]">
                     Fisioterapia Desportiva & Elite 
@@ -129,7 +162,7 @@
                     Mova-se sem <br><span class="text-fagio-green italic">limites.</span>
                 </h1>
                 <p class="text-lg text-gray-500 mb-10 max-w-lg leading-relaxed">
-                    Especialistas em fisioterapia desportiva. Recuperação acelerada e prevenção inteligente para quem vive o esporte em alta intensidade.
+                    Especialistas em fisioterapia desportiva. Recuperação acelerada e prevenção inteligente para quem vive o desporto em alta intensidade.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
                     <a href="https://wa.me/5511930172211" class="bg-fagio-green text-white px-10 py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300">Agendar Avaliação</a>
@@ -148,10 +181,11 @@
                 <div class="rounded-[40px] overflow-hidden shadow-2xl relative z-10 border-[12px] border-white">
                     <img src="imagens/atendimento2025.JPG" alt="Atendimento" class="w-full h-[450px] md:h-[600px] object-cover">
                 </div>
-                <div class="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-xl z-20 hidden md:block border border-gray-50 text-center">
+                <!-- Badge Flutuante -->
+                <div class="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-xl z-20 hidden md:block border border-gray-50 text-center text-fagio-green">
                     <i class="fas fa-bolt text-yellow-500 text-2xl mb-2"></i>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Recovery</p>
-                    <p class="text-xl font-bold text-fagio-green leading-none">Acelerado</p>
+                    <p class="text-xl font-bold leading-none">Acelerado</p>
                 </div>
             </div>
         </div>
@@ -159,33 +193,33 @@
 
     <!-- 2. SERVIÇOS: VERDE (GRADIENTE) -->
     <section id="servicos" class="py-28 bg-gradient-fagio text-white relative">
-        <div class="container mx-auto px-6">
+        <div class="container mx-auto px-6 reveal">
             <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 italic tracking-tight">O que fazemos por você</h2>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 italic tracking-tight">O que fazemos por si</h2>
                 <div class="w-20 h-1.5 bg-white/20 mx-auto rounded-full"></div>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
-                        <i class="fas fa-running text-2xl group-hover:text-fagio-green text-white"></i>
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
+                        <i class="fas fa-running text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Reabilitação</h3>
-                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Protocolos de elite para tratamento de lesões, focando no retorno seguro à rotina e esportes.</p>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Protocolos de elite para tratamento de lesões, focando no retorno seguro à rotina e ao desporto.</p>
                 </div>
                 <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
-                        <i class="fas fa-battery-full text-2xl group-hover:text-fagio-green text-white"></i>
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
+                        <i class="fas fa-battery-full text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Recovery</h3>
-                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Recuperação ativa e passiva para remover a fadiga e preparar seu corpo para o próximo desafio.</p>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Recuperação ativa e passiva para remover a fadiga e preparar o seu corpo para o próximo desafio.</p>
                 </div>
                 <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors">
-                        <i class="fas fa-chart-line text-2xl group-hover:text-fagio-green text-white"></i>
+                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
+                        <i class="fas fa-chart-line text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Biomecânica</h3>
-                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed">Análise técnica do movimento para identificar falhas e prevenir lesões por desgaste mecânico.</p>
+                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Análise técnica do movimento para identificar falhas e prevenir lesões por desgaste mecânico.</p>
                 </div>
             </div>
         </div>
@@ -197,7 +231,7 @@
         <div class="absolute top-1/4 left-0 w-80 h-80 bg-fagio-green/15 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-fagio-green/10 rounded-full blur-[120px] animate-blob animation-delay-4000"></div>
 
-        <div class="container mx-auto px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10 reveal">
             <div class="flex flex-col md:flex-row gap-20 items-center">
                 <div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
                     <img src="imagens/clinica1.jpeg" class="rounded-3xl h-64 w-full object-cover shadow-lg" alt="Local">
@@ -208,7 +242,7 @@
                 <div class="w-full md:w-1/2">
                     <h2 class="text-4xl font-bold mb-8 leading-tight">Ambiente projetado para a sua <br><span class="text-fagio-green italic uppercase underline underline-offset-8 decoration-gray-200">Excelência.</span></h2>
                     <p class="text-gray-500 mb-10 text-lg leading-relaxed">
-                        Nossa unidade em Santo André foi planejada para oferecer tecnologia de ponta e conforto absoluto durante seu tratamento.
+                        A nossa unidade em Santo André foi planeada para oferecer tecnologia de ponta e conforto absoluto durante o seu tratamento.
                     </p>
                     <div class="space-y-6">
                         <div class="flex gap-6 items-center p-6 bg-white border border-gray-100 shadow-sm rounded-3xl">
@@ -232,14 +266,14 @@
 
     <!-- 4. GALERIA INFINITA: VERDE (GRADIENTE) -->
     <section class="py-16 bg-gradient-fagio overflow-hidden border-y border-white/5">
-        <div class="container mx-auto px-6 mb-12 flex justify-between items-end text-white">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end text-white reveal">
             <div>
                 <h3 class="font-bold text-3xl italic tracking-tight">FAGIO em movimento</h3>
                 <p class="opacity-50 text-sm mt-2 uppercase tracking-widest font-bold">Dia a dia de elite</p>
             </div>
         </div>
         
-        <div class="relative flex overflow-hidden">
+        <div class="relative flex overflow-hidden reveal">
             <div class="marquee-content">
                 <div class="marquee-item"><img src="imagens/atendimento1.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
                 <div class="marquee-item"><img src="imagens/atendimentoatleta.jpeg" class="w-full h-full object-cover rounded-[30px] grayscale hover:grayscale-0 transition duration-700"></div>
@@ -260,7 +294,7 @@
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob"></div>
         <div class="absolute -bottom-20 left-10 w-96 h-96 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
 
-        <div class="container mx-auto px-6 relative z-10">
+        <div class="container mx-auto px-6 relative z-10 reveal">
             <div class="flex flex-col md:flex-row gap-20 items-center">
                 <div class="w-full md:w-1/2">
                     <h2 class="text-4xl md:text-5xl font-bold mb-10 italic leading-[1.1]">Expertise clínica, <br>mentalidade de <span class="text-fagio-green">atleta.</span></h2>
@@ -268,7 +302,7 @@
                         Giovani e Fabio fundaram a FAGIO para democratizar a fisioterapia de alto nível antes restrita a grandes clubes.
                     </p>
                     <p class="text-gray-500 mb-10 text-lg leading-relaxed">
-                        Hoje, unimos anos de vivência esportiva para tratar cada paciente com foco total em resultados, independentemente do nível competitivo.
+                        Hoje, unimos anos de vivência desportiva para tratar cada paciente com foco total em resultados, independentemente do nível competitivo.
                     </p>
                     <div class="p-8 bg-gray-50 rounded-3xl border-l-8 border-fagio-green">
                         <p class="text-2xl font-bold text-gray-800 italic">"Não tratamos apenas lesões, potencializamos seres humanos."</p>
@@ -277,7 +311,7 @@
                 </div>
                 <div class="w-full md:w-1/2 relative">
                     <div class="absolute inset-0 bg-fagio-green rounded-[50px] rotate-3 -z-10 opacity-5"></div>
-                    <!-- FOTO PROPRIETÁRIOS: Sem grayscale, cores normais -->
+                    <!-- FOTO PROPRIETÁRIOS: Cores Naturais -->
                     <img src="imagens/proprietarios.JPG" alt="Proprietários" class="rounded-[50px] shadow-2xl border-[12px] border-white transition duration-700">
                 </div>
             </div>
@@ -286,37 +320,37 @@
 
     <!-- 6. FAQ: VERDE (GRADIENTE) -->
     <section class="py-28 bg-gradient-fagio text-white relative overflow-hidden">
-        <div class="container mx-auto px-6 max-w-4xl relative z-10">
+        <div class="container mx-auto px-6 max-w-4xl relative z-10 reveal">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold italic mb-4 tracking-tight">Perguntas Frequentes</h2>
-                <p class="opacity-70 font-medium font-sm">Esclareça suas dúvidas sobre nossos atendimentos.</p>
+                <p class="opacity-70 font-medium font-sm text-sm">Esclareça as suas dúvidas sobre os nossos atendimentos.</p>
             </div>
             
-            <div class="space-y-4">
+            <div class="space-y-4 text-white">
                 <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
                     <summary class="flex justify-between items-center font-bold text-lg list-none">
-                        Atendem por convênio?
-                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                        Atendem por seguro de saúde?
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <p class="mt-4 opacity-80 leading-relaxed text-sm">
-                        Trabalhamos com o sistema de <strong>reembolso</strong>. Emitimos nota fiscal e documentação completa para você solicitar o estorno ao seu plano de saúde.
+                        Trabalhamos com o sistema de <strong>reembolso</strong>. Emitimos fatura e documentação completa para solicitar o estorno à sua seguradora.
                     </p>
                 </details>
 
                 <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
                     <summary class="flex justify-between items-center font-bold text-lg list-none">
-                        Preciso de pedido médico?
-                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                        Preciso de prescrição médica?
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <p class="mt-4 opacity-80 leading-relaxed text-sm">
-                        Não é obrigatório. Nossa avaliação clínica traça o diagnóstico fisioterapêutico necessário para iniciar o plano de tratamento.
+                        Não é obrigatório. A nossa avaliação clínica traça o diagnóstico fisioterapêutico necessário para iniciar o plano de tratamento.
                     </p>
                 </details>
 
                 <details class="group glass-card p-8 rounded-[30px] shadow-sm cursor-pointer hover:bg-white/10 transition duration-300">
                     <summary class="flex justify-between items-center font-bold text-lg list-none">
                         Quanto tempo dura a sessão?
-                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down text-white"></i></span>
+                        <span class="group-open:rotate-180 transition-transform"><i class="fas fa-chevron-down"></i></span>
                     </summary>
                     <p class="mt-4 opacity-80 leading-relaxed text-sm">
                         Dura em média 60 minutos, focados 100% no seu objetivo, utilizando as melhores técnicas e equipamentos.
@@ -328,17 +362,17 @@
 
     <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO -->
     <footer id="contato" class="py-28 bg-white border-t border-gray-100 relative overflow-hidden">
-        <!-- Blobs Dinâmicos -->
+        <!-- Blobs Dinâmicos Visíveis -->
         <div class="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-fagio-green/15 rounded-full blur-[150px] animate-blob"></div>
         <div class="absolute top-0 right-0 w-80 h-80 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
 
-        <div class="container mx-auto px-6 max-w-4xl text-center relative z-10">
+        <div class="container mx-auto px-6 max-w-4xl text-center relative z-10 reveal">
             <div class="mb-16">
                 <h2 class="text-5xl md:text-7xl font-bold italic mb-8 tracking-tighter leading-tight">
                     Vem ser <br><span class="text-fagio-green underline decoration-gray-100 underline-offset-8 uppercase">Fagio.</span>
                 </h2>
                 <p class="text-gray-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-                    Alta performance requer recuperação inteligente. Agende agora e eleve seu jogo.
+                    Alta performance requer recuperação inteligente. Agende agora e eleve o seu jogo.
                 </p>
             </div>
             
@@ -354,12 +388,11 @@
             </div>
 
             <div class="flex flex-col md:flex-row justify-between items-center gap-10 text-gray-400 text-[10px] border-t border-gray-100 pt-16 font-bold uppercase tracking-[0.2em]">
-                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left">
                     <div class="flex items-center gap-3">
                         <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO" class="h-6 opacity-30 grayscale">
                         <span>FAGIO © 2026</span>
                     </div>
-                    <!-- Link Braga Solutions -->
                     <div class="flex items-center gap-2">
                         <span class="opacity-40 uppercase text-[9px]">Desenvolvido por</span>
                         <a href="https://www.instagram.com/braga.solutions/" target="_blank" class="text-fagio-green hover:text-fagio-dark transition-colors tracking-[0.3em]">braga solutions</a>
@@ -378,6 +411,24 @@
         <i class="fab fa-whatsapp text-3xl"></i>
         <span class="absolute right-20 bg-white text-gray-900 px-6 py-3 rounded-2xl text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none border border-gray-100 whitespace-nowrap">Agende no WhatsApp</span>
     </a>
+
+    <!-- SCRIPT DE REVEAL (APARIÇÃO) -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Chama uma vez para revelar o que já está na tela ao carregar
+        reveal();
+    </script>
 
 </body>
 </html>
