@@ -122,7 +122,7 @@
                 <a href="#servicos" class="nav-link hover:text-fagio-green font-bold">Serviços</a>
                 <a href="#local" class="nav-link hover:text-fagio-green font-bold">Onde Estamos</a>
                 <a href="#quem-somos" class="nav-link hover:text-fagio-green font-bold">Quem Somos</a>
-                <a href="#contato" class="nav-link hover:text-fagio-green font-bold">Contacto</a>
+                <a href="#contato" class="nav-link hover:text-fagio-green font-bold">Contato</a>
             </div>
 
             <div class="flex items-center gap-4">
@@ -136,8 +136,8 @@
             </div>
 
             <input type="checkbox" id="menu-toggle" class="hidden">
-            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 md:hidden">
-                <div class="flex flex-col p-6 space-y-4 text-center font-bold uppercase text-sm tracking-widest text-gray-700">
+            <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 md:hidden text-gray-700">
+                <div class="flex flex-col p-6 space-y-4 text-center font-bold uppercase text-sm tracking-widest">
                     <a href="#inicio">Início</a>
                     <a href="#servicos">Serviços</a>
                     <a href="#local">Onde Estamos</a>
@@ -150,7 +150,6 @@
 
     <!-- 1. HERO: BRANCO COM MOVIMENTO -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-white">
-        <!-- Blobs Dinâmicos -->
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-fagio-green/20 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
 
@@ -182,7 +181,6 @@
                 <div class="rounded-[40px] overflow-hidden shadow-2xl relative z-10 border-[12px] border-white">
                     <img src="imagens/atendimento2025.JPG" alt="Atendimento" class="w-full h-[450px] md:h-[600px] object-cover text-white">
                 </div>
-                <!-- Badge Flutuante -->
                 <div class="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-xl z-20 hidden md:block border border-gray-50 text-center text-fagio-green">
                     <i class="fas fa-bolt text-yellow-500 text-2xl mb-2"></i>
                     <p class="text-xs font-bold uppercase tracking-widest text-gray-400">Recovery</p>
@@ -228,7 +226,6 @@
 
     <!-- 3. LOCAL: BRANCO COM MOVIMENTO -->
     <section id="local" class="py-28 relative overflow-hidden bg-white">
-        <!-- Blobs Dinâmicos -->
         <div class="absolute top-1/4 left-0 w-80 h-80 bg-fagio-green/15 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-fagio-green/10 rounded-full blur-[120px] animate-blob animation-delay-4000"></div>
 
@@ -291,7 +288,6 @@
 
     <!-- 5. QUEM SOMOS: BRANCO COM MOVIMENTO -->
     <section id="quem-somos" class="py-28 bg-white relative overflow-hidden">
-        <!-- Blobs Dinâmicos -->
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob"></div>
         <div class="absolute -bottom-20 left-10 w-96 h-96 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
 
@@ -312,7 +308,6 @@
                 </div>
                 <div class="w-full md:w-1/2 relative">
                     <div class="absolute inset-0 bg-fagio-green rounded-[50px] rotate-3 -z-10 opacity-5"></div>
-                    <!-- FOTO PROPRIETÁRIOS: Cores Naturais -->
                     <img src="imagens/proprietarios.JPG" alt="Proprietários" class="rounded-[50px] shadow-2xl border-[12px] border-white transition duration-700">
                 </div>
             </div>
@@ -361,9 +356,8 @@
         </div>
     </section>
 
-    <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO E MINI-FORMULÁRIO -->
+    <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO E AGENDAMENTO -->
     <footer id="contato" class="py-28 bg-white border-t border-gray-100 relative overflow-hidden">
-        <!-- Blobs Dinâmicos Visíveis -->
         <div class="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-fagio-green/15 rounded-full blur-[150px] animate-blob"></div>
         <div class="absolute top-0 right-0 w-80 h-80 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
 
@@ -424,12 +418,6 @@
         </div>
     </footer>
 
-    <!-- BOTÃO FLUTUANTE ATUALIZADO -->
-    <a href="https://wa.me/5511967285053" target="_blank" class="fixed bottom-10 right-10 bg-green-500 text-white w-16 h-16 rounded-[24px] flex items-center justify-center shadow-2xl shadow-green-200 hover:scale-110 hover:-translate-y-2 transition-all z-50 group">
-        <i class="fab fa-whatsapp text-3xl"></i>
-        <span class="absolute right-20 bg-white text-gray-900 px-6 py-3 rounded-2xl text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none border border-gray-100 whitespace-nowrap">Agende no WhatsApp</span>
-    </a>
-
     <!-- SCRIPT DE LÓGICA -->
     <script>
         // Efeito de Revelação (Scroll Reveal)
@@ -454,7 +442,6 @@
             const phone = "5511967285053";
             
             if(!name) {
-                // Mensagem personalizada simples em vez de alert padrão
                 const input = document.getElementById('sched-name');
                 input.classList.add('border-red-500');
                 setTimeout(() => input.classList.remove('border-red-500'), 2000);
