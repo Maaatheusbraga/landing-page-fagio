@@ -116,7 +116,7 @@
                 <span class="font-bold text-xl tracking-tighter text-fagio-green">FAGIO</span>
             </div>
             
-            <!-- Menu Desktop com Efeito de Hover -->
+            <!-- Menu Desktop -->
             <div class="hidden md:flex space-x-8 font-medium text-xs uppercase tracking-[0.2em]">
                 <a href="#inicio" class="nav-link hover:text-fagio-green font-bold">Início</a>
                 <a href="#servicos" class="nav-link hover:text-fagio-green font-bold">Serviços</a>
@@ -126,7 +126,8 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="https://wa.me/5511967285053" target="_blank" class="hidden sm:block bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg transition">
+                <!-- Botão superior que encaminha para o formulário no final -->
+                <a href="#contato" class="hidden sm:block bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg transition">
                     AGENDAR CONSULTA
                 </a>
                 <label for="menu-toggle" class="md:hidden cursor-pointer text-fagio-green p-2">
@@ -149,7 +150,7 @@
 
     <!-- 1. HERO: BRANCO COM MOVIMENTO -->
     <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-white">
-        <!-- Blobs Dinâmicos Visíveis -->
+        <!-- Blobs Dinâmicos -->
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-fagio-green/20 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
 
@@ -165,11 +166,7 @@
                     Especialistas em fisioterapia desportiva. Recuperação acelerada e prevenção inteligente para quem vive o desporto em alta intensidade.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-<<<<<<< HEAD
-                    <a href="https://wa.me/5511967285053" class="bg-fagio-green text-white px-10 py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300">Agendar Avaliação</a>
-=======
                     <a href="#contato" class="bg-fagio-green text-white px-10 py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300">Agendar Avaliação</a>
->>>>>>> 5998e3e8835335d72927ad0a5cf757f8572cdbbb
                     <a href="#servicos" class="bg-white border border-gray-200 text-gray-700 px-10 py-5 rounded-2xl font-bold text-center hover:bg-gray-50 transition">Ver Serviços</a>
                 </div>
                 <div class="mt-12 flex items-center gap-4">
@@ -366,7 +363,7 @@
 
     <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO E MINI-FORMULÁRIO -->
     <footer id="contato" class="py-28 bg-white border-t border-gray-100 relative overflow-hidden">
-        <!-- Blobs Dinâmicos -->
+        <!-- Blobs Dinâmicos Visíveis -->
         <div class="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-fagio-green/15 rounded-full blur-[150px] animate-blob"></div>
         <div class="absolute top-0 right-0 w-80 h-80 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
 
@@ -427,7 +424,7 @@
         </div>
     </footer>
 
-    <!-- BOTÃO FLUTUANTE -->
+    <!-- BOTÃO FLUTUANTE ATUALIZADO -->
     <a href="https://wa.me/5511967285053" target="_blank" class="fixed bottom-10 right-10 bg-green-500 text-white w-16 h-16 rounded-[24px] flex items-center justify-center shadow-2xl shadow-green-200 hover:scale-110 hover:-translate-y-2 transition-all z-50 group">
         <i class="fab fa-whatsapp text-3xl"></i>
         <span class="absolute right-20 bg-white text-gray-900 px-6 py-3 rounded-2xl text-xs font-bold shadow-2xl opacity-0 group-hover:opacity-100 transition duration-300 pointer-events-none border border-gray-100 whitespace-nowrap">Agende no WhatsApp</span>
@@ -450,14 +447,17 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
-        // Envio de Mensagem personalizada para o WhatsApp
+        // Envio de Mensagem personalizada para o WhatsApp (Novo Número: 11967285053)
         function sendWhatsAppMessage() {
             const name = document.getElementById('sched-name').value;
             const service = document.getElementById('sched-service').value;
             const phone = "5511967285053";
             
             if(!name) {
-                alert("Por favor, preencha o seu nome.");
+                // Mensagem personalizada simples em vez de alert padrão
+                const input = document.getElementById('sched-name');
+                input.classList.add('border-red-500');
+                setTimeout(() => input.classList.remove('border-red-500'), 2000);
                 return;
             }
 
