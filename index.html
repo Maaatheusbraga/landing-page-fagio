@@ -16,6 +16,11 @@
     
     <style>
         body { font-family: 'Inter', sans-serif; }
+        body {
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(56, 77, 67, 0.025) 0, transparent 32%),
+                radial-gradient(circle at 80% 0%, rgba(56, 77, 67, 0.02) 0, transparent 28%);
+        }
         
         /* Identidade Visual FAGIO */
         .bg-fagio-green { background-color: #384d43; } 
@@ -103,6 +108,42 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .section-divider {
+            width: min(220px, 40%);
+            height: 2px;
+            margin: 0 auto;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, rgba(56,77,67,0), rgba(56,77,67,0.35), rgba(56,77,67,0));
+        }
+
+        .cta-glow {
+            box-shadow: 0 16px 35px rgba(56, 77, 67, 0.24);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cta-glow:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 45px rgba(56, 77, 67, 0.34);
+        }
+
+        .trust-badge {
+            border: 1px solid rgba(56, 77, 67, 0.12);
+            background: rgba(56, 77, 67, 0.04);
+            color: #384d43;
+        }
+
+        @media (max-width: 767px) {
+            .section-divider {
+                width: 46%;
+                margin: 4px auto;
+            }
+
+            .trust-badge {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         #menu-toggle:checked ~ #mobile-menu { display: block; }
     </style>
 </head>
@@ -110,7 +151,7 @@
 
     <!-- HEADER -->
     <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center relative">
+        <nav class="container mx-auto px-4 md:px-6 py-3 md:py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-2">
                 <img src="SIMBOLOMARCADAGUA1.png" alt="FAGIO Logo" class="h-10 w-auto">
                 <span class="font-bold text-xl tracking-tighter text-fagio-green">FAGIO</span>
@@ -127,7 +168,7 @@
 
             <div class="flex items-center gap-4">
                 <!-- Botão superior que encaminha para o formulário no final -->
-                <a href="#contato" class="hidden sm:block bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg transition">
+                    <a href="#contato" class="hidden sm:block bg-fagio-green text-white px-6 py-2.5 rounded-full text-sm font-bold hover:shadow-lg transition cta-glow">
                     AGENDAR CONSULTA
                 </a>
                 <label for="menu-toggle" class="md:hidden cursor-pointer text-fagio-green p-2">
@@ -149,24 +190,24 @@
     </header>
 
     <!-- 1. HERO: BRANCO COM MOVIMENTO -->
-    <section id="inicio" class="relative min-h-screen flex items-center pt-24 overflow-hidden bg-white">
+    <section id="inicio" class="relative min-h-screen flex items-center pt-20 md:pt-24 overflow-hidden bg-white">
         <div class="absolute top-1/4 -left-20 w-96 h-96 bg-fagio-green/20 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
 
-        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10 reveal active">
+        <div class="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-10 md:gap-16 items-center relative z-10 reveal active">
             <div class="z-10 order-2 md:order-1">
                 <span class="inline-block px-4 py-1 rounded-full bg-fagio-green/10 text-fagio-green font-bold text-[10px] mb-6 uppercase tracking-[0.2em]">
                     Fisioterapia Desportiva & Elite 
                 </span>
-                <h1 class="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
                     Mova-se sem <br><span class="text-fagio-green italic">limites.</span>
                 </h1>
-                <p class="text-lg text-gray-500 mb-10 max-w-lg leading-relaxed">
+                <p class="text-base md:text-lg text-gray-500 mb-8 md:mb-10 max-w-lg leading-relaxed">
                     Especialistas em fisioterapia desportiva. Recuperação acelerada e prevenção inteligente para quem vive o desporto em alta intensidade.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contato" class="bg-fagio-green text-white px-10 py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300">Agendar Avaliação</a>
-                    <a href="#servicos" class="bg-white border border-gray-200 text-gray-700 px-10 py-5 rounded-2xl font-bold text-center hover:bg-gray-50 transition">Ver Serviços</a>
+                    <a href="#contato" class="bg-fagio-green text-white px-7 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-center hover:shadow-2xl hover:-translate-y-1 transition duration-300 cta-glow">Agendar Avaliação</a>
+                    <a href="#servicos" class="bg-white border border-gray-200 text-gray-700 px-7 md:px-10 py-4 md:py-5 rounded-2xl font-bold text-center hover:bg-gray-50 transition">Ver Serviços</a>
                 </div>
                 <div class="mt-12 flex items-center gap-4">
                     <div class="flex -space-x-3 text-white">
@@ -191,7 +232,7 @@
     </section>
 
     <!-- 2. SERVIÇOS: VERDE (GRADIENTE) -->
-    <section id="servicos" class="py-28 bg-gradient-fagio text-white relative">
+    <section id="servicos" class="py-20 md:py-28 bg-gradient-fagio text-white relative">
         <div class="container mx-auto px-6 reveal">
             <div class="text-center mb-20">
                 <h2 class="text-3xl md:text-5xl font-bold mb-6 italic tracking-tight">O que fazemos por si</h2>
@@ -199,33 +240,27 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
+                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:shadow-2xl transition-all duration-500 group text-center md:text-left">
                     <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
                         <i class="fas fa-running text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Reabilitação</h3>
                     <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Protocolos de elite para tratamento de lesões, focando no retorno seguro à rotina e ao desporto.</p>
                 </div>
-                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
+                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 hover:-translate-y-1 hover:shadow-2xl transition-all duration-500 group text-center md:text-left">
                     <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
                         <i class="fas fa-battery-full text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Recovery</h3>
                     <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Recuperação ativa e passiva para remover a fadiga e preparar o seu corpo para o próximo desafio.</p>
                 </div>
-                <div class="glass-card p-10 rounded-[40px] hover:bg-white hover:text-gray-900 transition-all duration-500 group text-center md:text-left">
-                    <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mb-8 mx-auto md:mx-0 group-hover:bg-fagio-green/10 transition-colors text-white group-hover:text-fagio-green">
-                        <i class="fas fa-chart-line text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Biomecânica</h3>
-                    <p class="text-white/60 group-hover:text-gray-500 leading-relaxed text-sm">Análise técnica do movimento para identificar falhas e prevenir lesões por desgaste mecânico.</p>
-                </div>
             </div>
         </div>
     </section>
+    <div class="section-divider"></div>
 
     <!-- 3. LOCAL: BRANCO COM MOVIMENTO -->
-    <section id="local" class="py-28 relative overflow-hidden bg-white">
+    <section id="local" class="py-20 md:py-28 relative overflow-hidden bg-white">
         <div class="absolute top-1/4 left-0 w-80 h-80 bg-fagio-green/15 rounded-full blur-[100px] animate-blob"></div>
         <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-fagio-green/10 rounded-full blur-[120px] animate-blob animation-delay-4000"></div>
 
@@ -261,6 +296,7 @@
             </div>
         </div>
     </section>
+    <div class="section-divider"></div>
 
     <!-- 4. GALERIA INFINITA: VERDE (GRADIENTE) -->
     <section class="py-16 bg-gradient-fagio overflow-hidden border-y border-white/5">
@@ -285,9 +321,10 @@
             </div>
         </div>
     </section>
+    <div class="section-divider"></div>
 
     <!-- 5. QUEM SOMOS: BRANCO COM MOVIMENTO -->
-    <section id="quem-somos" class="py-28 bg-white relative overflow-hidden">
+    <section id="quem-somos" class="py-20 md:py-28 bg-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fagio-green/15 rounded-full blur-[120px] animate-blob"></div>
         <div class="absolute -bottom-20 left-10 w-96 h-96 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-2000"></div>
 
@@ -315,7 +352,7 @@
     </section>
 
     <!-- 6. FAQ: VERDE (GRADIENTE) -->
-    <section class="py-28 bg-gradient-fagio text-white relative overflow-hidden">
+    <section class="py-20 md:py-28 bg-gradient-fagio text-white relative overflow-hidden">
         <div class="container mx-auto px-6 max-w-4xl relative z-10 reveal">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold italic mb-4 tracking-tight">Perguntas Frequentes</h2>
@@ -357,37 +394,48 @@
     </section>
 
     <!-- 7. RODAPÉ: BRANCO COM MOVIMENTO E AGENDAMENTO -->
-    <footer id="contato" class="py-28 bg-white border-t border-gray-100 relative overflow-hidden">
+    <footer id="contato" class="py-20 md:py-28 bg-white border-t border-gray-100 relative overflow-hidden">
         <div class="absolute -bottom-40 -left-20 w-[600px] h-[600px] bg-fagio-green/15 rounded-full blur-[150px] animate-blob"></div>
         <div class="absolute top-0 right-0 w-80 h-80 bg-fagio-green/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
 
         <div class="container mx-auto px-6 max-w-4xl text-center relative z-10 reveal">
             <div class="mb-12">
-                <h2 class="text-5xl md:text-7xl font-bold italic mb-8 tracking-tighter leading-tight">
+                <h2 class="text-4xl sm:text-5xl md:text-7xl font-bold italic mb-8 tracking-tighter leading-tight">
                     Vem ser <br><span class="text-fagio-green underline decoration-gray-100 underline-offset-8 uppercase">Fagio.</span>
                 </h2>
-                <p class="text-gray-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+                <p class="text-gray-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed">
                     Preencha os dados abaixo e envie o seu pré-atendimento agora.
                 </p>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <span class="trust-badge px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">+5.000 atendimentos</span>
+                    <span class="trust-badge px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Especialistas em desporto</span>
+                    <span class="trust-badge px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">Santo André - SP</span>
+                </div>
             </div>
 
             <!-- MINI FORMULÁRIO DE AGENDAMENTO -->
-            <div class="max-w-xl mx-auto mb-16 space-y-4 text-left">
+            <div class="max-w-xl mx-auto mb-16 space-y-4 text-left bg-white/90 border border-gray-100 rounded-[36px] p-6 md:p-8 shadow-xl shadow-gray-100/70">
+                <p class="text-xs font-semibold text-gray-500 px-2">
+                    Leva menos de 1 minuto. Esses dados ajudam a agilizar seu primeiro atendimento.
+                </p>
                 <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Nome</label>
                     <input type="text" id="sched-name" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium" placeholder="Ex: João Silva">
+                    <p id="error-name" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Informe o seu nome.</p>
                 </div>
                 <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Idade</label>
                     <input type="number" id="sched-age" min="0" max="120" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium" placeholder="Ex: 34">
+                    <p id="error-age" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Informe uma idade válida entre 1 e 120.</p>
                 </div>
                 <div class="space-y-1">
                     <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Queixa principal</label>
-                    <textarea id="sched-complaint" rows="4" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium resize-none" placeholder="Descreva os sintomas, tempo da dor e limitação atual."></textarea>
+                    <textarea id="sched-complaint" rows="4" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium resize-none" placeholder="Ex: dor no joelho há 2 meses, piora ao correr e melhora com repouso."></textarea>
+                    <p id="error-complaint" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Descreva sua queixa principal.</p>
                 </div>
                 <div class="space-y-2">
                     <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Diagnóstico médico</p>
-                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                    <div id="group-medical-diagnosis" class="flex flex-col sm:flex-row gap-3 sm:gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
                         <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
                             <input type="radio" name="sched-medical-diagnosis" value="Sim" class="accent-[#384d43]">
                             Sim
@@ -397,10 +445,11 @@
                             Não
                         </label>
                     </div>
+                    <p id="error-medical-diagnosis" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Selecione Sim ou Não.</p>
                 </div>
                 <div class="space-y-2">
                     <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Orientação médica prévia</p>
-                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                    <div id="group-medical-guidance" class="flex flex-col sm:flex-row gap-3 sm:gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
                         <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
                             <input type="radio" name="sched-medical-guidance" value="Sim" class="accent-[#384d43]">
                             Sim
@@ -410,10 +459,11 @@
                             Não
                         </label>
                     </div>
+                    <p id="error-medical-guidance" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Selecione Sim ou Não.</p>
                 </div>
                 <div class="space-y-2">
                     <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Exame de imagem</p>
-                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                    <div id="group-imaging-exam" class="flex flex-col sm:flex-row gap-3 sm:gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
                         <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
                             <input type="radio" name="sched-imaging-exam" value="Sim" class="accent-[#384d43]">
                             Sim
@@ -423,14 +473,35 @@
                             Não
                         </label>
                     </div>
+                    <p id="error-imaging-exam" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Selecione Sim ou Não.</p>
                 </div>
-                <div class="space-y-1">
+                <div class="space-y-2">
+                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Veio por indicação?</p>
+                    <div id="group-referral" class="flex flex-col sm:flex-row gap-3 sm:gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-referral" value="Sim" class="accent-[#384d43]">
+                            Sim
+                        </label>
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-referral" value="Não" class="accent-[#384d43]">
+                            Não
+                        </label>
+                    </div>
+                    <p id="error-referral" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Conte para a gente se foi por indicação.</p>
+                </div>
+                <div id="referral-name-wrapper" class="space-y-1 hidden">
+                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Quem te indicou?</label>
+                    <input type="text" id="sched-referral-name" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium" placeholder="Ex: Maria Oliveira">
+                    <p id="error-referral-name" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Informe o nome da pessoa que te indicou.</p>
+                </div>
+                <div id="medical-details-wrapper" class="space-y-1 hidden">
                     <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Detalhes do diagnóstico médico</label>
                     <textarea id="sched-medical-details" rows="3" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium resize-none" placeholder="Se houver diagnóstico, descreva aqui."></textarea>
+                    <p id="error-medical-details" class="hidden text-xs text-red-600 font-medium ml-4 pt-1">Descreva o diagnóstico médico informado.</p>
                 </div>
-                <button onclick="sendWhatsAppMessage()" class="w-full bg-fagio-green text-white py-6 rounded-3xl font-extrabold uppercase tracking-widest text-sm hover:bg-fagio-dark shadow-xl shadow-fagio-green/20 transition-all active:scale-95 flex items-center justify-center gap-3">
+                <button id="sched-submit" onclick="sendWhatsAppMessage()" class="w-full bg-fagio-green text-white py-5 md:py-6 rounded-3xl font-extrabold uppercase tracking-[0.12em] md:tracking-widest text-xs md:text-sm hover:bg-fagio-dark shadow-xl shadow-fagio-green/20 transition-all active:scale-95 flex items-center justify-center gap-3 cta-glow">
                     <i class="fab fa-whatsapp text-xl"></i>
-                    AGENDAR ATENDIMENTO
+                    ENVIAR PRÉ-ATENDIMENTO NO WHATSAPP
                 </button>
             </div>
             
@@ -482,39 +553,209 @@
             return selectedOption ? selectedOption.value : '';
         }
 
-        function highlightField(field) {
+        function setFieldError(field, errorElement, message) {
+            if (message) errorElement.textContent = message;
             field.classList.add('border-red-500');
-            setTimeout(() => field.classList.remove('border-red-500'), 2000);
+            errorElement.classList.remove('hidden');
+        }
+
+        function clearFieldError(field, errorElement) {
+            field.classList.remove('border-red-500');
+            errorElement.classList.add('hidden');
+        }
+
+        function setGroupError(groupElement, errorElement) {
+            groupElement.classList.add('border-red-500');
+            errorElement.classList.remove('hidden');
+        }
+
+        function clearGroupError(groupElement, errorElement) {
+            groupElement.classList.remove('border-red-500');
+            errorElement.classList.add('hidden');
+        }
+
+        function toggleMedicalDetailsField() {
+            const medicalDetailsWrapper = document.getElementById('medical-details-wrapper');
+            const hasMedicalDiagnosis = getSelectedOptionValue('sched-medical-diagnosis');
+            const detailsField = document.getElementById('sched-medical-details');
+            const detailsError = document.getElementById('error-medical-details');
+
+            if (hasMedicalDiagnosis === 'Sim') {
+                medicalDetailsWrapper.classList.remove('hidden');
+                return;
+            }
+
+            medicalDetailsWrapper.classList.add('hidden');
+            detailsField.value = '';
+            clearFieldError(detailsField, detailsError);
+        }
+
+        function toggleReferralField() {
+            const referralWrapper = document.getElementById('referral-name-wrapper');
+            const hasReferral = getSelectedOptionValue('sched-referral');
+            const referralField = document.getElementById('sched-referral-name');
+            const referralError = document.getElementById('error-referral-name');
+
+            if (hasReferral === 'Sim') {
+                referralWrapper.classList.remove('hidden');
+                return;
+            }
+
+            referralWrapper.classList.add('hidden');
+            referralField.value = '';
+            clearFieldError(referralField, referralError);
+        }
+
+        function bindValidationListeners() {
+            const nameField = document.getElementById('sched-name');
+            const ageField = document.getElementById('sched-age');
+            const complaintField = document.getElementById('sched-complaint');
+            const medicalDetailsField = document.getElementById('sched-medical-details');
+            const referralNameField = document.getElementById('sched-referral-name');
+
+            nameField.addEventListener('input', () => clearFieldError(nameField, document.getElementById('error-name')));
+            ageField.addEventListener('input', () => clearFieldError(ageField, document.getElementById('error-age')));
+            complaintField.addEventListener('input', () => clearFieldError(complaintField, document.getElementById('error-complaint')));
+            medicalDetailsField.addEventListener('input', () => clearFieldError(medicalDetailsField, document.getElementById('error-medical-details')));
+            referralNameField.addEventListener('input', () => clearFieldError(referralNameField, document.getElementById('error-referral-name')));
+
+            document.querySelectorAll('input[name="sched-medical-diagnosis"]').forEach((radio) => {
+                radio.addEventListener('change', () => {
+                    clearGroupError(
+                        document.getElementById('group-medical-diagnosis'),
+                        document.getElementById('error-medical-diagnosis')
+                    );
+                    toggleMedicalDetailsField();
+                });
+            });
+
+            document.querySelectorAll('input[name="sched-medical-guidance"]').forEach((radio) => {
+                radio.addEventListener('change', () => {
+                    clearGroupError(
+                        document.getElementById('group-medical-guidance'),
+                        document.getElementById('error-medical-guidance')
+                    );
+                });
+            });
+
+            document.querySelectorAll('input[name="sched-imaging-exam"]').forEach((radio) => {
+                radio.addEventListener('change', () => {
+                    clearGroupError(
+                        document.getElementById('group-imaging-exam'),
+                        document.getElementById('error-imaging-exam')
+                    );
+                });
+            });
+
+            document.querySelectorAll('input[name="sched-referral"]').forEach((radio) => {
+                radio.addEventListener('change', () => {
+                    clearGroupError(
+                        document.getElementById('group-referral'),
+                        document.getElementById('error-referral')
+                    );
+                    toggleReferralField();
+                });
+            });
         }
 
         // Envio de Mensagem personalizada para o WhatsApp (Novo Número: 11967285053)
         function sendWhatsAppMessage() {
-            const name = document.getElementById('sched-name').value.trim();
-            const age = document.getElementById('sched-age').value.trim();
-            const complaint = document.getElementById('sched-complaint').value.trim();
+            const nameField = document.getElementById('sched-name');
+            const ageField = document.getElementById('sched-age');
+            const complaintField = document.getElementById('sched-complaint');
+            const medicalDetailsField = document.getElementById('sched-medical-details');
+            const referralNameField = document.getElementById('sched-referral-name');
+            const submitButton = document.getElementById('sched-submit');
+            const submitButtonLabel = submitButton.innerHTML;
+            const name = nameField.value.trim();
+            const age = ageField.value.trim();
+            const complaint = complaintField.value.trim();
             const hasMedicalDiagnosis = getSelectedOptionValue('sched-medical-diagnosis');
             const hasMedicalGuidance = getSelectedOptionValue('sched-medical-guidance');
             const hasImagingExam = getSelectedOptionValue('sched-imaging-exam');
-            const medicalDetails = document.getElementById('sched-medical-details').value.trim() || 'Não informado';
+            const hasReferral = getSelectedOptionValue('sched-referral');
+            const medicalDetails = medicalDetailsField.value.trim();
+            const referralName = referralNameField.value.trim();
             const phone = "5511967285053";
+            let hasError = false;
             
             if (!name) {
-                highlightField(document.getElementById('sched-name'));
-                return;
+                setFieldError(nameField, document.getElementById('error-name'));
+                hasError = true;
+            } else {
+                clearFieldError(nameField, document.getElementById('error-name'));
             }
 
-            if (!age) {
-                highlightField(document.getElementById('sched-age'));
-                return;
+            const numericAge = Number(age);
+            if (!age || Number.isNaN(numericAge) || numericAge < 1 || numericAge > 120) {
+                setFieldError(ageField, document.getElementById('error-age'));
+                hasError = true;
+            } else {
+                clearFieldError(ageField, document.getElementById('error-age'));
             }
 
             if (!complaint) {
-                highlightField(document.getElementById('sched-complaint'));
-                return;
+                setFieldError(complaintField, document.getElementById('error-complaint'));
+                hasError = true;
+            } else {
+                clearFieldError(complaintField, document.getElementById('error-complaint'));
             }
 
-            if (!hasMedicalDiagnosis || !hasMedicalGuidance || !hasImagingExam) {
-                alert('Por favor, responda todas as opções de Sim/Não antes de continuar.');
+            if (!hasMedicalDiagnosis) {
+                setGroupError(
+                    document.getElementById('group-medical-diagnosis'),
+                    document.getElementById('error-medical-diagnosis')
+                );
+                hasError = true;
+            }
+
+            if (!hasMedicalGuidance) {
+                setGroupError(
+                    document.getElementById('group-medical-guidance'),
+                    document.getElementById('error-medical-guidance')
+                );
+                hasError = true;
+            }
+
+            if (!hasImagingExam) {
+                setGroupError(
+                    document.getElementById('group-imaging-exam'),
+                    document.getElementById('error-imaging-exam')
+                );
+                hasError = true;
+            }
+
+            if (!hasReferral) {
+                setGroupError(
+                    document.getElementById('group-referral'),
+                    document.getElementById('error-referral')
+                );
+                hasError = true;
+            }
+
+            if (hasReferral === 'Sim' && !referralName) {
+                setFieldError(
+                    referralNameField,
+                    document.getElementById('error-referral-name'),
+                    'Informe o nome da pessoa que te indicou.'
+                );
+                hasError = true;
+            } else {
+                clearFieldError(referralNameField, document.getElementById('error-referral-name'));
+            }
+
+            if (hasMedicalDiagnosis === 'Sim' && !medicalDetails) {
+                setFieldError(
+                    medicalDetailsField,
+                    document.getElementById('error-medical-details'),
+                    'Descreva o diagnóstico médico informado.'
+                );
+                hasError = true;
+            } else {
+                clearFieldError(medicalDetailsField, document.getElementById('error-medical-details'));
+            }
+
+            if (hasError) {
                 return;
             }
 
@@ -527,13 +768,28 @@
                 `Diagnóstico médico: ${hasMedicalDiagnosis}`,
                 `Orientação médica prévia: ${hasMedicalGuidance}`,
                 `Exame de imagem: ${hasImagingExam}`,
-                `Detalhes do diagnóstico médico: ${medicalDetails}`
+                `Veio por indicação: ${hasReferral}`,
+                `Quem indicou: ${hasReferral === 'Sim' ? referralName : 'Não se aplica'}`,
+                `Detalhes do diagnóstico médico: ${hasMedicalDiagnosis === 'Sim' ? medicalDetails : 'Não se aplica'}`
             ].join("\n");
 
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-80', 'cursor-not-allowed');
+            submitButton.innerHTML = '<i class="fab fa-whatsapp text-xl"></i> ABRINDO WHATSAPP...';
             
             window.open(url, '_blank');
+
+            setTimeout(() => {
+                submitButton.disabled = false;
+                submitButton.classList.remove('opacity-80', 'cursor-not-allowed');
+                submitButton.innerHTML = submitButtonLabel;
+            }, 1200);
         }
+
+        bindValidationListeners();
+        toggleMedicalDetailsField();
+        toggleReferralField();
     </script>
 
 </body>
