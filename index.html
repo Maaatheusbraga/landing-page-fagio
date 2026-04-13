@@ -367,24 +367,66 @@
                     Vem ser <br><span class="text-fagio-green underline decoration-gray-100 underline-offset-8 uppercase">Fagio.</span>
                 </h2>
                 <p class="text-gray-500 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-                    Escolha o serviço desejado e inicie o seu agendamento agora.
+                    Preencha os dados abaixo e envie o seu pré-atendimento agora.
                 </p>
             </div>
 
             <!-- MINI FORMULÁRIO DE AGENDAMENTO -->
-            <div class="max-w-md mx-auto mb-16 space-y-4 text-left">
+            <div class="max-w-xl mx-auto mb-16 space-y-4 text-left">
                 <div class="space-y-1">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Nome Completo</label>
+                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Nome</label>
                     <input type="text" id="sched-name" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium" placeholder="Ex: João Silva">
                 </div>
                 <div class="space-y-1">
-                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Serviço Pretendido</label>
-                    <select id="sched-service" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium appearance-none">
-                        <option value="Reabilitação Desportiva">Reabilitação Desportiva</option>
-                        <option value="Recovery & Performance">Recovery & Performance</option>
-                        <option value="Avaliação Biomecânica">Avaliação Biomecânica</option>
-                        <option value="Outro Atendimento">Outro Atendimento</option>
-                    </select>
+                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Idade</label>
+                    <input type="number" id="sched-age" min="0" max="120" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium" placeholder="Ex: 34">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Queixa principal</label>
+                    <textarea id="sched-complaint" rows="4" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium resize-none" placeholder="Descreva os sintomas, tempo da dor e limitação atual."></textarea>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Diagnóstico médico</p>
+                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-medical-diagnosis" value="Sim" class="accent-[#384d43]">
+                            Sim
+                        </label>
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-medical-diagnosis" value="Não" class="accent-[#384d43]">
+                            Não
+                        </label>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Orientação médica prévia</p>
+                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-medical-guidance" value="Sim" class="accent-[#384d43]">
+                            Sim
+                        </label>
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-medical-guidance" value="Não" class="accent-[#384d43]">
+                            Não
+                        </label>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Exame de imagem</p>
+                    <div class="flex gap-6 px-4 py-3 bg-gray-50 border border-gray-100 rounded-3xl">
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-imaging-exam" value="Sim" class="accent-[#384d43]">
+                            Sim
+                        </label>
+                        <label class="inline-flex items-center gap-2 text-sm font-medium text-gray-700">
+                            <input type="radio" name="sched-imaging-exam" value="Não" class="accent-[#384d43]">
+                            Não
+                        </label>
+                    </div>
+                </div>
+                <div class="space-y-1">
+                    <label class="text-[10px] uppercase font-bold text-gray-400 tracking-widest ml-4">Detalhes do diagnóstico médico</label>
+                    <textarea id="sched-medical-details" rows="3" class="w-full bg-gray-50 border border-gray-100 p-5 rounded-3xl outline-none focus:ring-2 focus:ring-fagio-green/20 transition-all font-medium resize-none" placeholder="Se houver diagnóstico, descreva aqui."></textarea>
                 </div>
                 <button onclick="sendWhatsAppMessage()" class="w-full bg-fagio-green text-white py-6 rounded-3xl font-extrabold uppercase tracking-widest text-sm hover:bg-fagio-dark shadow-xl shadow-fagio-green/20 transition-all active:scale-95 flex items-center justify-center gap-3">
                     <i class="fab fa-whatsapp text-xl"></i>
@@ -435,21 +477,60 @@
         window.addEventListener("scroll", reveal);
         reveal();
 
+        function getSelectedOptionValue(name) {
+            const selectedOption = document.querySelector(`input[name="${name}"]:checked`);
+            return selectedOption ? selectedOption.value : '';
+        }
+
+        function highlightField(field) {
+            field.classList.add('border-red-500');
+            setTimeout(() => field.classList.remove('border-red-500'), 2000);
+        }
+
         // Envio de Mensagem personalizada para o WhatsApp (Novo Número: 11967285053)
         function sendWhatsAppMessage() {
-            const name = document.getElementById('sched-name').value;
-            const service = document.getElementById('sched-service').value;
+            const name = document.getElementById('sched-name').value.trim();
+            const age = document.getElementById('sched-age').value.trim();
+            const complaint = document.getElementById('sched-complaint').value.trim();
+            const hasMedicalDiagnosis = getSelectedOptionValue('sched-medical-diagnosis');
+            const hasMedicalGuidance = getSelectedOptionValue('sched-medical-guidance');
+            const hasImagingExam = getSelectedOptionValue('sched-imaging-exam');
+            const medicalDetails = document.getElementById('sched-medical-details').value.trim() || 'Não informado';
             const phone = "5511967285053";
             
-            if(!name) {
-                const input = document.getElementById('sched-name');
-                input.classList.add('border-red-500');
-                setTimeout(() => input.classList.remove('border-red-500'), 2000);
+            if (!name) {
+                highlightField(document.getElementById('sched-name'));
                 return;
             }
 
-            const message = `NOVA AVALIAÇÃO%0A%0AOlá! Meu nome é ${name} e gostaria de agendar uma consulta para ${service}.`;
-            const url = `https://wa.me/${phone}?text=${message}`;
+            if (!age) {
+                highlightField(document.getElementById('sched-age'));
+                return;
+            }
+
+            if (!complaint) {
+                highlightField(document.getElementById('sched-complaint'));
+                return;
+            }
+
+            if (!hasMedicalDiagnosis || !hasMedicalGuidance || !hasImagingExam) {
+                alert('Por favor, responda todas as opções de Sim/Não antes de continuar.');
+                return;
+            }
+
+            const message = [
+                "NOVA SOLICITAÇÃO DE AGENDAMENTO",
+                "",
+                `Nome: ${name}`,
+                `Idade: ${age}`,
+                `Queixa principal: ${complaint}`,
+                `Diagnóstico médico: ${hasMedicalDiagnosis}`,
+                `Orientação médica prévia: ${hasMedicalGuidance}`,
+                `Exame de imagem: ${hasImagingExam}`,
+                `Detalhes do diagnóstico médico: ${medicalDetails}`
+            ].join("\n");
+
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
             
             window.open(url, '_blank');
         }
